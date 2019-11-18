@@ -1,0 +1,41 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: es-curator
+  namespace: logging
+  labels:
+    app: curator
+spec:
+  # At 11:15.
+  schedule: "15 11 * * *"
+  jobTemplate:
+    metadata:
+      name: es-curator
+      labels:
+        app: curator
+    spec:
+      template:
+        metadata:
+          name: es-curator
+          labels:
+            app: curator
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: bobrik/curator:5.7.6
+              name: curator
+              command:
+                - curator_cli
+                - --host
+                - elasticsearch
+                - delete_indices
+                - --ignore_empty_list
+                - --filter_list
+                - '{"filtertype":"age","source":"name","direction": "older","timestring":"%Y.%m.%d","unit":"days","unit_count":15}'
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 50Mi
+                limits:
+                  cpu: 50m
+                  memory: 50Mi
