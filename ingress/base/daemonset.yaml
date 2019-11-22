@@ -23,6 +23,8 @@ spec:
         fluentbit.io/parser_stdout: nginx-z
         #fluentbit.io/exclude_stdout: "true"
     spec:
+      # wait up to five minutes for the drain of connections
+      terminationGracePeriodSeconds: 300
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
         - name: nginx-ingress-controller
@@ -34,6 +36,7 @@ spec:
             - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
             - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
             - --annotations-prefix=nginx.ingress.kubernetes.io
+            #- --publish-service=$(POD_NAMESPACE)/ingress-nginx
             - --report-node-internal-ip-address
           securityContext:
             allowPrivilegeEscalation: true
@@ -79,3 +82,8 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 10
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /wait-shutdown

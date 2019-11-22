@@ -7,5 +7,5 @@ resources:
 images:
   - name: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
     newTag: 0.26.1
-  - name: index.docker.io/qqbuby/nginx-ingress-controller-default-backend:1.17.5
+  - name: index.docker.io/qqbuby/nginx-ingress-controller-default-backend
     newTag: 1.17.5
