@@ -1,7 +1,8 @@
-#### # Backup Kubernetes PKI
-#### # Backup Kubernetes Etcd database with a CronJob object
+# Backup Kubernetes PKI and Etcd database with a CronJob object
 
-***The CronJob must be scheduled to Kubernetes Master node.***
+**The CronJob must be scheduled to Kubernetes Master node.**
+
+Run the `test/up.sh` shell script to deploy a CronJob object on Kubernetes.
 
 #### # Recovery from Master Failure with Kubeadm
 
