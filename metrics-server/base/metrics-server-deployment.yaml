@@ -29,13 +29,21 @@ spec:
         emptyDir: {}
       containers:
       - name: metrics-server
-        image: k8s.gcr.io/metrics-server-amd64:v0.3.2
-        command: ['/metrics-server']
+        image: k8s.gcr.io/metrics-server-amd64:v0.3.6
         args:
-          - --kubelet-insecure-tls
-          - --kubelet-preferred-address-types
-          - InternalIP
-        #imagePullPolicy: Always
+          - --cert-dir=/tmp
+          - --secure-port=4443
+        ports:
+        - name: main-port
+          containerPort: 4443
+          protocol: TCP
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+        imagePullPolicy: Always
         volumeMounts:
         - name: tmp-dir
           mountPath: /tmp
+      nodeSelector:
+        beta.kubernetes.io/os: linux

@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ../base
+patchesStrategicMerge:
+  - metrics-server-deployment.yaml
 images:
   - name: k8s.gcr.io/metrics-server-amd64
-    newTag: "v0.3.2"
+    newTag: "v0.3.6"

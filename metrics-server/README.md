@@ -1,2 +1,2 @@
 https://github.com/kubernetes-incubator/metrics-server.git
-@aae31dfb0eafbd0e820785e7f12dc09385414c8c
+@019bda9fb8562dbc7996f0c38e31c709628df316
