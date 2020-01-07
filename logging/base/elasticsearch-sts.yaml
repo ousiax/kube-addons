@@ -32,9 +32,32 @@ spec:
       labels:
         k8s-app: elasticsearch
     spec:
+      terminationGracePeriodSeconds: 300
+      securityContext:
+        #runAsUser: 1000
+        #runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: elasticsearch
           image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.4.2
+          env:
+            - name: "NAMESPACE"
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: ES_JAVA_OPTS
+              value: "-Xms512m -Xmx512m"
+             # https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
+            - name: ES_CLUSTER_HEALTH_CHECK_PARAMS
+              #value: "wait_for_status=green&timeout=1s"
+              value: "wait_for_status=yellow&timeout=5s"
+          ports:
+            - containerPort: 9200
+              name: db
+              protocol: TCP
+            - containerPort: 9300
+              name: transport
+              protocol: TCP
           resources:
             # need more cpu upon initialization, therefore burstable class
             requests:
@@ -43,23 +66,37 @@ spec:
             limits:
               cpu: 1000m
               memory: 1Gi
-          ports:
-            - containerPort: 9200
-              name: db
-              protocol: TCP
-            - containerPort: 9300
-              name: transport
-              protocol: TCP
-          volumeMounts:
+          livenessProbe:
+            httpGet:
+              port: db
+              path: /_cluster/health
+            initialDelaySeconds: 30
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 3
+            timeoutSeconds: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - |
+                  #!/usr/bin/env bash -e
+                  # If the node is starting up wait for the cluster to be ready (request params: '${ES_CLUSTER_HEALTH_CHECK_PARAMS}' )
+                  # Once it has started only check that the node itself is responding
+                  #
+                  # https://github.com/elastic/helm-charts/blob/master/elasticsearch/templates/statefulset.yaml#L195
+                  START_FILE=/tmp/.es_start_file
+
+                  http () {
+                      local path="${1}"
+                      if [ -n "${ELASTIC_USERNAME}" ] && [ -n "${ELASTIC_PASSWORD}" ]; then
+                        BASIC_AUTH="-u ${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}"
+                      else
+unts:
             - name: elasticsearchdata
               mountPath: /usr/share/elasticsearch/data
-          env:
-            - name: "NAMESPACE"
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: ES_JAVA_OPTS
-              value: "-Xms512m -Xmx512m"
       initContainers:
         # Elasticsearch requires vm.max_map_count to be at least 262144.
         # If your OS already sets up this number to a higher value, feel free
@@ -69,3 +106,21 @@ spec:
           name: elasticsearch-logging-init
           securityContext:
             privileged: true
+
+                        BASIC_AUTH=''
+                      fi
+                      curl -XGET -s -k --fail ${BASIC_AUTH} http://127.0.0.1:9200${path}
+                  }
+
+                  if [ -f "${START_FILE}" ]; then
+                      echo "Elasticsearch is already running, lets check the node is healthy and there are master nodes available"
+                      http "/_cluster/health?timeout=0s"
+                  else
+                      echo "Waiting for elasticsearch cluster to become cluster to be ready (request params: \"${ES_CLUSTER_HEALTH_CHECK_PARAMS}\" )"
+                      if http "/_cluster/health?${ES_CLUSTER_HEALTH_CHECK_PARAMS}" ; then
+                          touch ${START_FILE}
+                          exit 0
+                      else
+                          echo "Cluster is not yet ready (request params: \"${ES_CLUSTER_HEALTH_CHECK_PARAMS}\" )"
+                          exit 1
+                      fi
