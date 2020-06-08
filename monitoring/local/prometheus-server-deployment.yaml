@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-server
+spec:
+  template:
+    spec:
+      volumes:
+        - name: prometheus-storage-volume
+          emptyDir: {}

@@ -1,0 +1,9 @@
+apiVersion: 1
+datasources:
+  - name: prometheus
+    version: 1
+    access: proxy
+    editable: true
+    orgId: 1
+    type: prometheus
+    url: http://prometheus-server.monitoring.svc:9090

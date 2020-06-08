@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+patchesStrategicMerge:
+  - prometheus-server-deployment.yaml
+  - grafana-deployment.yaml
+images:
+  - name: quay.io/coreos/kube-state-metrics
+    newTag: v1.8.0
+  - name: quay.io/prometheus/prometheus
+    newTag: v2.14.0
+  - name: quay.io/prometheus/node-exporter
+    newTag: v0.18.1
+  - name: grafana/grafana
+    newTag: 6.4.4

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-server
+  labels:
+    app.kubernetes.io/name: prometheus-server
+    app.kubernetes.io/part-of: monitoring
+spec:
+  selector:
+    app.kubernetes.io/name: prometheus-server
+    app.kubernetes.io/part-of: monitoring
+  type: NodePort
+  ports:
+    - port: 9090
+      targetPort: 9090
+      nodePort: 30205
