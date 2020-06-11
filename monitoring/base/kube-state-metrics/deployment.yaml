@@ -16,9 +16,6 @@ spec:
       labels:
         app.kubernetes.io/name: kube-state-metrics
         app.kubernetes.io/version: v1.8.0
-      annotations:
-        prometheus.io/port: "8080"
-        prometheus.io/scrape: "true"
     spec:
       containers:
       - image: quay.io/coreos/kube-state-metrics:v1.8.0

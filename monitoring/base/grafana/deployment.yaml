@@ -48,17 +48,3 @@ spec:
               path: /api/health
               port: 3000
             timeoutSeconds: 5
-          volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: data
-            - mountPath: /etc/grafana/provisioning/datasources
-              name: datasources
-            - mountPath: /etc/grafana/provisioning/dashboards
-              name: dashboards
-      volumes:
-        - name: datasources
-          configMap:
-            name: grafana-datasources
-        - name: dashboards
-          configMap:
-            name: grafana-dashboards

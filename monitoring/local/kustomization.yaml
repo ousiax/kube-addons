@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
   - ../base
 patchesStrategicMerge:
-  - prometheus-server-deployment.yaml
-  - grafana-deployment.yaml
 images:
   - name: quay.io/coreos/kube-state-metrics
     newTag: v1.8.0
