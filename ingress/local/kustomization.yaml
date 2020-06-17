@@ -3,10 +3,8 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ../base
-  - service.yaml
 images:
   - name: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
     newTag: 0.26.1
   - name: qqbuby/nginx-ingress-controller-default-backend
-    name: index.docker.io/qqbuby/nginx-ingress-controller-default-backend
     newTag: 1.17.5

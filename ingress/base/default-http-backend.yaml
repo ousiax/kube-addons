@@ -45,7 +45,7 @@ spec:
           # Any image is permissible as long as:
           # 1. It serves a 404 page at /
           # 2. It serves 200 on a /healthz endpoint
-          image: index.docker.io/qqbuby/nginx-ingress-controller-default-backend:1.17.5
+          image: qqbuby/nginx-ingress-controller-default-backend:1.17.5
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
