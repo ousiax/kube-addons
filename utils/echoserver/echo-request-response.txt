@@ -1,0 +1,34 @@
+curl  -i 104.208.233.56/echoserver -H 'X-Forwarded-For: 10.200.30.40'
+HTTP/1.1 200 OK
+Server: openresty/1.15.8.2
+Date: Wed, 16 Oct 2019 07:59:13 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+
+CLIENT VALUES:
+client_address=10.100.50.5
+command=GET
+real path=/
+query=nil
+request_version=1.1
+request_uri=http://104.208.233.56:8080/
+
+SERVER VALUES:
+server_version=nginx: 1.10.0 - lua: 10001
+
+HEADERS RECEIVED:
+accept=*/*
+host=104.208.233.56
+user-agent=curl/7.64.0
+x-forwarded-for=140.206.187.194
+x-forwarded-host=104.208.233.56
+x-forwarded-port=80
+x-forwarded-proto=http
+x-original-forwarded-for=10.200.30.40
+x-real-ip=140.206.187.194
+x-request-id=1f4ade58a97bb97cd3412ed7f4aa4fd7
+x-scheme=http
+BODY:
+-no body in request-
