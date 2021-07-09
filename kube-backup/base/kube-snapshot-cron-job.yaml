@@ -1,5 +1,5 @@
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: kube-snapshot
@@ -28,12 +28,12 @@ spec:
                 - mountPath: /kubernetes/backup
                   name: kubernetesbackup
             - name: pki
-              image: alpine
+              image: k8s.gcr.io/etcd
               env:
                 - name: BACKUP_DIR
                   value: "/kubernetes/backup"
               command: ["/bin/sh"]
-              args: ["-c", "cp -av /etc/kubernetes/pki $BACKUP_DIR/pki-$(date +%Y-%m-%d_%H-%M-%S_%Z) && find $BACKUP_DIR -maxdepth 1 -name \"pki-*\" -type d -mtime +30 -exec rm -vrf {} \\;"]
+              args: ["-c", "cp -av /etc/kubernetes/pki $BACKUP_DIR/pki-$(date +%Y-%m-%d_%H-%M-%S_%Z) && find $BACKUP_DIR -maxdepth 1 -name \"pki-*\" -type d -ctime +30 -exec rm -vrf {} \\;"]
               volumeMounts:
                 - mountPath: /etc/kubernetes
                   name: etckubernetes

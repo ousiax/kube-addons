@@ -5,6 +5,5 @@ resources:
   - ../base
 images:
   - name: k8s.gcr.io/etcd
+    newName: registry.cn-hangzhou.aliyuncs.com/google_containers/etcd
     newTag: "3.3.15-0"
-  - name: alpine
-    newTag: "3.6"
