@@ -1,4 +1,4 @@
-FROM nginx:1.17.5-alpine
+FROM nginx:1.21.1-alpine
 label maintainer="ROY XU <qqbuby@gamil.com>"
 
 COPY ./heartbeat.gif /usr/share/nginx/html/heartbeat.gif
