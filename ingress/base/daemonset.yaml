@@ -1,53 +1,58 @@
 ---
+# Source: ingress-nginx/templates/controller-deployment.yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: nginx-ingress-controller
-  namespace: ingress-nginx
   labels:
+    helm.sh/chart: ingress-nginx-4.0.1
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/version: 1.0.0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: controller
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: ingress-nginx
-      app.kubernetes.io/part-of: ingress-nginx
+      app.kubernetes.io/instance: ingress-nginx
+      app.kubernetes.io/component: controller
+  revisionHistoryLimit: 10
+  minReadySeconds: 0
   template:
     metadata:
       labels:
         app.kubernetes.io/name: ingress-nginx
-        app.kubernetes.io/part-of: ingress-nginx
-      annotations:
-        prometheus.io/port: "10254"
-        prometheus.io/scrape: "true"
-        fluentbit.io/parser_stdout: nginx-z
-        #fluentbit.io/exclude_stdout: "true"
+        app.kubernetes.io/instance: ingress-nginx
+        app.kubernetes.io/component: controller
     spec:
-      # wait up to five minutes for the drain of connections
-      terminationGracePeriodSeconds: 300
-      serviceAccountName: nginx-ingress-serviceaccount
-      priorityClassName: system-node-critical
+      dnsPolicy: ClusterFirst
       containers:
-        - name: nginx-ingress-controller
-          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
+        - name: controller
+          image: k8s.gcr.io/ingress-nginx/controller:v1.0.0@sha256:0851b34f69f69352bf168e6ccf30e1e20714a264ab1ecd1933e4d8c0fc3215c6
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /wait-shutdown
           args:
             - /nginx-ingress-controller
-            - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
-            - --configmap=$(POD_NAMESPACE)/nginx-configuration
-            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
-            - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
-            - --annotations-prefix=nginx.ingress.kubernetes.io
-            #- --publish-service=$(POD_NAMESPACE)/ingress-nginx
-            - --report-node-internal-ip-address
+            - --election-id=ingress-controller-leader
+            - --controller-class=k8s.io/ingress-nginx
+            - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
+            - --validating-webhook=:8443
+            - --validating-webhook-certificate=/usr/local/certificates/cert
+            - --validating-webhook-key=/usr/local/certificates/key
           securityContext:
-            allowPrivilegeEscalation: true
             capabilities:
               drop:
                 - ALL
               add:
                 - NET_BIND_SERVICE
-            # www-data -> 33
-            runAsUser: 33
+            runAsUser: 101
+            allowPrivilegeEscalation: true
           env:
             - name: POD_NAME
               valueFrom:
@@ -57,14 +62,19 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          ports:
-            - name: http
-              containerPort: 80
-              hostPort: 80
-            - name: https
-              containerPort: 443
-              hostPort: 443
+            - name: LD_PRELOAD
+              value: /usr/local/lib/libmimalloc.so
           livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /healthz
+              port: 10254
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /healthz
@@ -73,18 +83,32 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 10
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /healthz
-              port: 10254
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 10
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                  - /wait-shutdown
+            timeoutSeconds: 1
+          ports:
+            - name: http
+              containerPort: 80
+              hostPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              hostPort: 443
+              protocol: TCP
+            - name: webhook
+              containerPort: 8443
+              protocol: TCP
+          volumeMounts:
+            - name: webhook-cert
+              mountPath: /usr/local/certificates/
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 90Mi
+      nodeSelector:
+        kubernetes.io/os: linux
+      serviceAccountName: ingress-nginx
+      terminationGracePeriodSeconds: 300
+      volumes:
+        - name: webhook-cert
+          secret:
+            secretName: ingress-nginx-admission
