@@ -13,11 +13,14 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "8m"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/server-alias: "echo.local.io"
 spec:
   rules:
-    - http:
+    - host: local.io
+      http:
         paths:
-          - path: /echoserver
+          - path: /
             pathType: ImplementationSpecific
             backend:
               service:

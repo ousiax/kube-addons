@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ../base
+  - ingress.yaml
 images:
   - name: k8s.gcr.io/echoserver
     newTag: "1.10"

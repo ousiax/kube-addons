@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - echoserver-deployment.yaml
   - service-clusterip.yaml
-  - ingress.yaml
