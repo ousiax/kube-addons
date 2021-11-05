@@ -9,11 +9,10 @@ spec:
     spec:
       containers:
         - name: metrics-server
-          imagePullPolicy: IfNotPresent
-          command: ['/metrics-server']
           args:
             - --cert-dir=/tmp
-            - --secure-port=4443
+            - --secure-port=443
+            - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+            - --kubelet-use-node-status-port
+            - --metric-resolution=15s
             - --kubelet-insecure-tls
-            - --kubelet-preferred-address-types
-            - InternalIP,InternalIP,ExternalIP,Hostname
