@@ -4,6 +4,14 @@ namespace: default
 resources:
   - ../base
   - ingress.yaml
+secretGenerator:
+  - name: local.io
+    files:
+      - tls.crt=local.io.crt
+      - tls.key=local.io.key
+    type: "kubernetes.io/tls"
+generatorOptions:
+  disableNameSuffixHash: true
 images:
   - name: k8s.gcr.io/echoserver
     newTag: "1.10"
