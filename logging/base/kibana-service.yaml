@@ -12,6 +12,5 @@ spec:
     k8s-app: kibana
   ports:
     - port: 5601
-      nodePort: 32115
       protocol: TCP
       targetPort: ui

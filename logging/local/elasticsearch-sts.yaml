@@ -33,16 +33,16 @@ spec:
           resources:
             # need more cpu upon initialization, therefore burstable class
             requests:
-              cpu: 1000m
-              memory: 5000Mi
+              cpu: 500m
+              memory: 512Mi
             limits:
-              cpu: 4000m
-              memory: 6000Mi
+              cpu: 1000m
+              memory: 1024Mi
           env:
             - name: "discovery.type"
               value: "single-node"
             - name: ES_JAVA_OPTS
-              value: "-Xms4g -Xmx4g"
+              value: "-Xms500m -Xmx500m"
 
       initContainers:
         # The container runs Elasticsearch as user elasticsearch using uid:gid 1000:1000.

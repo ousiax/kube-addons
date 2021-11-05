@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../fluent.confd
+images:
+  - name: fluent/fluent-bit
+    newName: index.docker.io/fluent/fluent-bit
+    newTag: "1.8.9"
+  - name: docker.elastic.co/elasticsearch/elasticsearch-oss
+    newTag: "7.10.2"
+  - name: docker.elastic.co/kibana/kibana-oss
+    newTag: "7.10.2"
+  - name: alpine
+    newName: index.docker.io/alpine
+  - name: bobrik/curator
+    newName: index.docker.io/bobrik/curator
+    newTag: "5.8.1"
