@@ -1,0 +1,28 @@
+# Source: ingress-nginx/templates/controller-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "10254"
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30080
+      protocol: TCP
+      targetPort: http
+      appProtocol: http
+    - name: https
+      port: 443
+      nodePort: 30443
+      protocol: TCP
+      targetPort: https
+      appProtocol: https
+    - name: prometheus
+      port: 10254
+      protocol: TCP
+      targetPort: prometheus
