@@ -1,34 +1,45 @@
-curl  -i 104.208.233.56/echoserver -H 'X-Forwarded-For: 10.200.30.40'
+$ curl -iL https://local.io
 HTTP/1.1 200 OK
-Server: openresty/1.15.8.2
-Date: Wed, 16 Oct 2019 07:59:13 GMT
+Server: nginx/1.14.2
+Date: Mon, 08 Nov 2021 08:20:34 GMT
 Content-Type: text/plain
 Transfer-Encoding: chunked
 Connection: keep-alive
-Vary: Accept-Encoding
 
-CLIENT VALUES:
-client_address=10.100.50.5
-command=GET
-real path=/
-query=nil
-request_version=1.1
-request_uri=http://104.208.233.56:8080/
 
-SERVER VALUES:
-server_version=nginx: 1.10.0 - lua: 10001
 
-HEADERS RECEIVED:
-accept=*/*
-host=104.208.233.56
-user-agent=curl/7.64.0
-x-forwarded-for=140.206.187.194
-x-forwarded-host=104.208.233.56
-x-forwarded-port=80
-x-forwarded-proto=http
-x-original-forwarded-for=10.200.30.40
-x-real-ip=140.206.187.194
-x-request-id=1f4ade58a97bb97cd3412ed7f4aa4fd7
-x-scheme=http
-BODY:
--no body in request-
+Hostname: echoserver-9d94d584f-c6xkv
+
+Pod Information:
+	-no pod information available-
+
+Server values:
+	server_version=nginx: 1.13.3 - lua: 10008
+
+Request Information:
+	client_address=10.244.0.223
+	method=GET
+	real path=/
+	query=
+	request_version=1.1
+	request_scheme=http
+	request_uri=http://local.io:8080/
+
+Request Headers:
+	accept=*/*
+	host=local.io
+	user-agent=curl/7.64.0
+	via=local.io
+	x-forwarded-for=127.0.0.1, 10.244.0.1
+	x-forwarded-host=local.io
+	x-forwarded-port=80
+	x-forwarded-proto=https
+	x-forwarded-scheme=https
+	x-original-forwarded-for=127.0.0.1
+	x-real-ip=127.0.0.1
+	x-request-id=85fcdb6edecb10e110e79f63873ff43b
+	x-scheme=https
+
+Request Body:
+	-no body in request-
+
