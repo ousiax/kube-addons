@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base
 patchesStrategicMerge:
+  - kube-state-metrics/service.yaml
 images:
   - name: quay.io/coreos/kube-state-metrics
     newTag: v1.8.0
