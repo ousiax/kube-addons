@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kube-swagger-ui
+  name: kube-swagger-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-swagger-ui
+  template:
+    metadata:
+      labels:
+        app: kube-swagger-ui
+    spec:
+      volumes:
+        - name: k8s-swagger-json
+          emptyDir:
+      initContainers:
+        - image: swaggerapi/swagger-ui:v4.1.0
+          name: init-k8s-swagger-json
+          env:
+            - name: TOKEN
+              value: /var/run/secrets/kubernetes.io/serviceaccount/token
+            - name: SWAGGER_JSON
+              value: /k8s/swagger.json
+          command: ['sh', '-c', 'curl -sSk https://kubernetes/openapi/v2 -H "Authorization: Bearer $(cat $TOKEN)" -o $SWAGGER_JSON']
+          volumeMounts:
+            - name: k8s-swagger-json
+              mountPath: /k8s
+      containers:
+        - image: swaggerapi/swagger-ui:v4.1.0
+          name: kube-swagger-ui
+          env:
+            - name: SWAGGER_JSON
+              value: /k8s/swagger.json
+          ports:
+            - name: swagger-ui
+              containerPort: 8080
+          volumeMounts:
+            - name: k8s-swagger-json
+              mountPath: /k8s
