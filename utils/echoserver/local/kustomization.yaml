@@ -4,6 +4,8 @@ namespace: default
 resources:
   - ../base
   - ingress.yaml
+patchesStrategicMerge:
+  - resources.yaml
 secretGenerator:
   - name: local.io
     files:
