@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overprovisioning
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - name: reserve-resources
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "100Mi"

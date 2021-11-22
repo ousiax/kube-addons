@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overprovisioning
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: overprovisioning
+  template:
+    metadata:
+      labels:
+        run: overprovisioning
+    spec:
+      priorityClassName: overprovisioning
+      containers:
+      - name: reserve-resources
+        image: k8s.gcr.io/pause
+        resources:
+          requests:
+            cpu: "200m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overprovisioning-autoscaler
+  namespace: default
+  labels:
+    app: overprovisioning-autoscaler
+spec:
+  selector:
+    matchLabels:
+      app: overprovisioning-autoscaler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: overprovisioning-autoscaler
+    spec:
+      containers:
+        - image: k8s.gcr.io/cluster-proportional-autoscaler-amd64:1.1.2
+          name: autoscaler
+          command:
+            - ./cluster-proportional-autoscaler
+            - --namespace=default
+            - --configmap=overprovisioning-autoscaler
+            - --default-params={"linear":{"coresPerReplica":1}}
+            - --target=deployment/overprovisioning
+            - --logtostderr=true
+            - --v=2
+      serviceAccountName: cluster-proportional-autoscaler-service-account
