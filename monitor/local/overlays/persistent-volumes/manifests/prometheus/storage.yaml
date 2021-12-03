@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-storage
+  labels:
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/part-of: monitor
+spec:
+  storageClassName: local-storage
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  local:
+    path: /kube/prometheus/db
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: node.local.io/prometheus-storage
+            operator: In
+            values:
+              - local
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-storage
+  labels:
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/part-of: monitor
+spec:
+  volumeName: prometheus-storage
+  storageClassName: local-storage
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+    limits:
+      storage: 5Gi
