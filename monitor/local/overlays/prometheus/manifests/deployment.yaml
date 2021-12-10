@@ -7,6 +7,15 @@ spec:
     spec:
       containers:
         - name: prometheus
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yaml"
+            - "--storage.tsdb.path=/prometheus/"
+            - "--storage.tsdb.no-lockfile"
+            - "--storage.tsdb.retention.time=365d"
+            - "--storage.tsdb.retention.size=4GB"
+            - "--log.level=info"
+            - "--log.format=json"
+            - "--web.enable-lifecycle"
           resources:
             requests:
               cpu: 200m

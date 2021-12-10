@@ -1,7 +1,24 @@
 ---
 global:
-  scrape_interval: 1s
-  evaluation_interval: 5s
+  # How frequently to scrape targets by default.
+  # [ scrape_interval: <duration> | default = 1m ]
+  scrape_interval: 10s
+
+  # How long until a scrape request times out.
+  # [ scrape_timeout: <duration> | default = 10s ]
+
+  # How frequently to evaluate rules.
+  # [ evaluation_interval: <duration> | default = 1m ]
+  evaluation_interval: 30s
+
+  # The labels to add to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  # external_labels:
+  #   [ <labelname>: <labelvalue> ... ]
+
+  # File to which PromQL queries are logged.
+  # Reloading the configuration will reopen the file.
+  # [ query_log_file: <string> ]
 rule_files:
   - /etc/prometheus/prometheus.rules
 scrape_configs:
@@ -22,6 +39,9 @@ scrape_configs:
         regex: (.+)
         target_label: __metrics_path__
         replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+      - source_labels: [__meta_kubernetes_node_name]
+        action: replace
+        target_label: node
 
   # Scrape config for API servers
   - job_name: 'kubernetes-apiservers'
@@ -54,17 +74,15 @@ scrape_configs:
         target_label: __address__
       - action: labelmap
         regex: __meta_kubernetes_service_label_(.+)
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_(.+)
       - source_labels: [__meta_kubernetes_namespace]
         action: replace
-        target_label: kubernetes_namespace
+        target_label: namespace
       - source_labels: [__meta_kubernetes_service_name]
         action: replace
         target_label: service
-      - source_labels: [__meta_kubernetes_pod_name]
+      - source_labels: [__meta_kubernetes_pod_node_name]
         action: replace
-        target_label: pod
+        target_label: node
 
   # Scrape config for pods.
   - job_name: 'kubernetes-pods'
@@ -85,6 +103,11 @@ scrape_configs:
       - action: labelmap
         regex: __meta_kubernetes_pod_label_(.+)
       - source_labels: [__meta_kubernetes_namespace]
+        action: replace
         target_label: namespace
       - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
         target_label: pod
+      - source_labels: [__meta_kubernetes_pod_phase]
+        regex: Pending|Succeeded|Failed|Completed
+        action: drop

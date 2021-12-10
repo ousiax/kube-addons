@@ -32,7 +32,6 @@ spec:
             - "--storage.tsdb.no-lockfile"
             - "--log.level=error"
             - "--log.format=json"
-            - "--web.enable-lifecycle"
           ports:
             - containerPort: 9090
           resources:
@@ -51,7 +50,6 @@ spec:
             httpGet:
               path: /-/ready
               port: 9090
-            initialDelaySeconds: 10
             timeoutSeconds: 5
           volumeMounts:
             - name: prometheus-config
