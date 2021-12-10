@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: echoserver
 spec:
+  replicas: 3
   template:
     spec:
       containers:
@@ -16,3 +17,17 @@ spec:
               cpu: 50m
               memory: 50Mi
               ephemeral-storage: 10Mi
+      tolerations:
+        - effect: PreferNoSchedule
+          #key: node.local.io
+          operator: Exists
+        - effect: NoSchedule
+          #key: node.local.io
+          operator: Exists
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app: echoserver
