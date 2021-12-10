@@ -2,15 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: default
 resources:
-  - ../base
-  - ingress.yaml
+  - ../manifests
+  - overlays/manifests/ingress.yaml
 patchesStrategicMerge:
-  - resources.yaml
+  - overlays/manifests/deployment.yaml
 secretGenerator:
   - name: local.io
     files:
-      - tls.crt=local.io.crt
-      - tls.key=local.io.key
+      - tls.crt=overlays/manifests/tls/local.io.crt
+      - tls.key=overlays/manifests/tls/local.io.key
     type: "kubernetes.io/tls"
 generatorOptions:
   disableNameSuffixHash: true

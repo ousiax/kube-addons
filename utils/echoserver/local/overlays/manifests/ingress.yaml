@@ -1,27 +1,27 @@
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: echo.server
+#  labels:
+#    app: echoserver
+#  annotations:
+#    kubernetes.io/ingress.class: "nginx"
+#    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#    nginx.ingress.kubernetes.io/configuration-snippet: |
+#      return 308 $scheme://local.io$request_uri;
+#spec:
+#  tls:
+#    - hosts:
+#      -  "*.local.io"
+#      secretName: "local.io"
+#  rules:
+#    - host: echo.local.io
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo.server
-  labels:
-    app: echoserver
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      return 308 $scheme://local.io$request_uri;
-spec:
-  tls:
-    - hosts:
-      -  "*.local.io"
-      secretName: "local.io"
-  rules:
-    - host: echo.local.io
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: echoserver
+  name: local.io
   labels:
     app: echoserver
   annotations:
