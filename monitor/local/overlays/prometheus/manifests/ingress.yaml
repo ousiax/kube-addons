@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: prometheus.local.io
+    - host: prom.local.io
       http:
         paths:
           - path: /
