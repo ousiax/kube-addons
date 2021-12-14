@@ -1,7 +1,7 @@
 dashboards:
-  - name: Kubernetes Monitoring Dashboard
-    id: 12740
-    url: https://grafana.com/grafana/dashboards/12740
+  - name: Kubernetes Monitor
+    id: 15398
+    url: https://grafana.com/grafana/dashboards/15398
 
   - name: NGINX Ingress controller
     id: 9614
@@ -10,11 +10,3 @@ dashboards:
   - name: Node Exporter Full
     id: 1860
     url: https://grafana.com/grafana/dashboards/1860
-
-  - name: Kubernetes Cluster (Prometheus)
-    id: 6417
-    url: https://grafana.com/grafana/dashboards/6417
-
-  - name: K8 Cluster Detail Dashboard
-    id: 10856
-    url: https://grafana.com/grafana/dashboards/10856
