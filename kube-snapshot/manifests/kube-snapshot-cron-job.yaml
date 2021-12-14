@@ -1,0 +1,84 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kube-snapshot
+  namespace: kube-system
+spec:
+  schedule: "15 11 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          #initContainers:
+          #  - name: cleanup
+          #    image: alpine:3
+          #    env:
+          #      - name: SNAPSHOT_DIR
+          #        value: "/kube/snapshots"
+          #    command: ["/bin/sh"]
+          #    args:
+          #      ["-c", "find $SNAPSHOT_DIR -name \"etcd-*.db\" -type f -mtime +30 -exec rm {} \\; && find $SNAPSHOT_DIR -maxdepth 1 -name \"pki-*\" -type d -ctime +30 -exec rm -vrf {} \\;"]
+          #    volumeMounts:
+          #      - mountPath: /kube/snapshots
+          #        name: kubesnapshots
+          containers:
+            - name: etcd
+              # Same image as in /etc/kubernetes/manifests/etcd.yaml
+              image: k8s.gcr.io/etcd
+              env:
+                - name: POD_UID
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.uid
+                - name: ETCDCTL_API
+                  value: "3"
+                - name: SNAPSHOT_DIR
+                  value: "/kube/snapshots"
+              command: ["/bin/sh"]
+              args: ["-c", "etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key snapshot save $SNAPSHOT_DIR/etcd-$(POD_UID).db"]
+              volumeMounts:
+                - mountPath: /etc/kubernetes
+                  name: etckubernetes
+                  readOnly: true
+                - mountPath: /kube/snapshots
+                  name: kubesnapshots
+            - name: pki
+              image: busybox:1
+              #image: k8s.gcr.io/etcd
+              env:
+                - name: POD_UID
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.uid
+                - name: SNAPSHOT_DIR
+                  value: "/kube/snapshots"
+              command: ["/bin/sh"]
+              args: ["-c", "cp -av /etc/kubernetes/pki $SNAPSHOT_DIR/pki-$(POD_UID)"]
+              volumeMounts:
+                - mountPath: /etc/kubernetes
+                  name: etckubernetes
+                  readOnly: true
+                - mountPath: /kube/snapshots
+                  name: kubesnapshots
+          hostNetwork: true
+          restartPolicy: OnFailure
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: node-role.kubernetes.io/master
+                      operator: Exists
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+          volumes:
+            - name: etckubernetes
+              hostPath:
+                path: /etc/kubernetes
+                type: Directory
+            - name: kubesnapshots
+              hostPath:
+                path: /kube/snapshots
+                type: DirectoryOrCreate
