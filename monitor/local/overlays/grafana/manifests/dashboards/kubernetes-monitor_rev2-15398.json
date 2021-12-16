@@ -72,12 +72,12 @@
   "gnetId": 15398,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1639477565232,
+  "iteration": 1639623160372,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -86,1300 +86,1299 @@
         "y": 0
       },
       "id": 34,
-      "panels": [
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "rgba(50, 172, 45, 0.97)",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 65
-                  },
-                  {
-                    "color": "rgba(245, 54, 54, 0.9)",
-                    "value": 90
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 8,
-            "x": 0,
-            "y": 1
-          },
-          "id": 6,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"^$Node$\"}[$__rate_interval])) / sum (machine_cpu_cores{node=~\"^$Node$\"}) * 100",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "CPU usage",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "rgba(50, 172, 45, 0.97)",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 65
-                  },
-                  {
-                    "color": "rgba(245, 54, 54, 0.9)",
-                    "value": 90
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 8,
-            "x": 8,
-            "y": 1
-          },
-          "id": 4,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"}) / sum (machine_memory_bytes{node=~\"^$Node$\"}) * 100",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Memory usage",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "rgba(50, 172, 45, 0.97)",
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "rgba(50, 172, 45, 0.97)",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 65
-                  },
-                  {
-                    "color": "rgba(245, 54, 54, 0.9)",
-                    "value": 90
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 8,
-            "x": 16,
-            "y": 1
-          },
-          "id": 7,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) * 100",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "metric": "",
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Filesystem usage",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 0,
-            "y": 6
-          },
-          "id": 11,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"^$Node$\"}[$__rate_interval]))",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Used",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 4,
-            "y": 6
-          },
-          "id": 12,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (machine_cpu_cores{node=~\"^$Node$\"})",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Total",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 8,
-            "y": 6
-          },
-          "id": 9,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"})",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Used",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 12,
-            "y": 6
-          },
-          "id": 10,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (machine_memory_bytes{node=~\"^$Node$\"})",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Total",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 16,
-            "y": 6
-          },
-          "id": 13,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"})",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Used",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "0"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 3,
-            "w": 4,
-            "x": 20,
-            "y": 6
-          },
-          "id": 14,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "none",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "expr": "sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"})",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 10
-            }
-          ],
-          "title": "Total",
-          "type": "stat"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "percentunit"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 8,
-            "x": 0,
-            "y": 9
-          },
-          "id": 2051,
-          "links": [],
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[$__rate_interval])) / sum (machine_cpu_cores{})",
-              "format": "time_series",
-              "hide": false,
-              "instant": false,
-              "interval": "15s",
-              "intervalFactor": 1,
-              "legendFormat": "Cluster",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\", node=~\"^$Node$\"}[$__rate_interval])) by (node) / sum (machine_cpu_cores{node=~\"^$Node$\"}) by (node)",
-              "format": "time_series",
-              "hide": false,
-              "interval": "1m",
-              "intervalFactor": 1,
-              "legendFormat": "{{node}}",
-              "refId": "B"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "CPU usage",
-          "type": "timeseries"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 8,
-            "x": 8,
-            "y": 9
-          },
-          "id": 2052,
-          "links": [],
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (container_memory_working_set_bytes{id=\"/\"}) / sum (machine_memory_bytes{}) * 100",
-              "format": "time_series",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Cluster",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"}) by (node) / sum (machine_memory_bytes{node=~\"^$Node$\"}) by (node) * 100",
-              "format": "time_series",
-              "hide": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{node}}",
-              "refId": "B"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Memory usage",
-          "type": "timeseries"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 8,
-            "x": 16,
-            "y": 9
-          },
-          "id": 2053,
-          "links": [],
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "pluginVersion": "8.2.3",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\"}) * 100",
-              "format": "time_series",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Cluster",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) by (node) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) by (node) * 100",
-              "format": "time_series",
-              "hide": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "{{node}}",
-              "refId": "B"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Filesystem usage",
-          "type": "timeseries"
-        },
-        {
-          "datasource": null,
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "Bps"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 0,
-            "y": 15
-          },
-          "id": 2082,
-          "options": {
-            "legend": {
-              "calcs": [
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum(rate(container_network_receive_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
-              "interval": "15s",
-              "legendFormat": "-> {{node}}",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "- sum(rate(container_network_transmit_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
-              "hide": false,
-              "interval": "15s",
-              "legendFormat": "<- {{node}}",
-              "refId": "B"
-            },
-            {
-              "exemplar": true,
-              "expr": "sum(rate(container_network_receive_bytes_total{node=~\"^$Node$\"}[$__rate_interval]))",
-              "hide": false,
-              "interval": "15s",
-              "legendFormat": "-> Cluster",
-              "refId": "C"
-            },
-            {
-              "exemplar": true,
-              "expr": "- sum(rate(container_network_transmit_bytes_total{node=~\"^$Node$\"}[$__rate_interval]))",
-              "hide": false,
-              "interval": "15s",
-              "legendFormat": "<- Cluster",
-              "refId": "D"
-            }
-          ],
-          "title": "Network I/O usage",
-          "type": "timeseries"
-        },
-        {
-          "datasource": null,
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "Bps"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 8,
-            "y": 15
-          },
-          "id": 2102,
-          "options": {
-            "legend": {
-              "calcs": [
-                "max",
-                "mean"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum(rate(container_fs_writes_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
-              "interval": "15s",
-              "legendFormat": "-> {{node}}",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "- sum(rate(container_fs_reads_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
-              "hide": false,
-              "interval": "15s",
-              "legendFormat": "<- {{node}}",
-              "refId": "B"
-            }
-          ],
-          "title": "Filesystem I/O usage",
-          "type": "timeseries"
-        },
-        {
-          "datasource": null,
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 16,
-            "y": 15
-          },
-          "id": 2101,
-          "options": {
-            "legend": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum(container_fs_usage_bytes{node=~\"^$Node$\"}) by (node)",
-              "interval": "15s",
-              "legendFormat": " {{node}}",
-              "refId": "A"
-            }
-          ],
-          "title": "Filesystem Capacity usage",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "Overview",
       "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "rgba(50, 172, 45, 0.97)",
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 65
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"^$Node$\"}[$__rate_interval])) / sum (machine_cpu_cores{node=~\"^$Node$\"}) * 100",
+          "format": "time_series",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "CPU usage",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "rgba(50, 172, 45, 0.97)",
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 65
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"}) / sum (machine_memory_bytes{node=~\"^$Node$\"}) * 100",
+          "format": "time_series",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Memory usage",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "rgba(50, 172, 45, 0.97)",
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 65
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 7,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) * 100",
+          "format": "time_series",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "metric": "",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Filesystem usage",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 6
+      },
+      "id": 11,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"^$Node$\"}[$__rate_interval]))",
+          "format": "time_series",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Used",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 4,
+        "y": 6
+      },
+      "id": 12,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (machine_cpu_cores{node=~\"^$Node$\"})",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Total",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 6
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"})",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Used",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 6
+      },
+      "id": 10,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (machine_memory_bytes{node=~\"^$Node$\"})",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Total",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 6
+      },
+      "id": 13,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"})",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Used",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 6
+      },
+      "id": 14,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "expr": "sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"})",
+          "interval": "10s",
+          "intervalFactor": 1,
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "title": "Total",
+      "type": "stat"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2051,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[$__rate_interval])) / sum (machine_cpu_cores{})",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "15s",
+          "intervalFactor": 1,
+          "legendFormat": "Cluster",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\", node=~\"^$Node$\"}[$__rate_interval])) by (node) / sum (machine_cpu_cores{node=~\"^$Node$\"}) by (node)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "1m",
+          "intervalFactor": 1,
+          "legendFormat": "{{node}}",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CPU usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 9
+      },
+      "id": 2052,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (container_memory_working_set_bytes{id=\"/\"}) / sum (machine_memory_bytes{}) * 100",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Cluster",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"^$Node$\"}) by (node) / sum (machine_memory_bytes{node=~\"^$Node$\"}) by (node) * 100",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{node}}",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memory usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 9
+      },
+      "id": 2053,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.3",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\"}) * 100",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Cluster",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) by (node) / sum (container_fs_limit_bytes{device=~\"^/dev/.*$\",id=\"/\",node=~\"^$Node$\"}) by (node) * 100",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{node}}",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Filesystem usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 15
+      },
+      "id": 2082,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(container_network_receive_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
+          "interval": "15s",
+          "legendFormat": "-> {{node}}",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "- sum(rate(container_network_transmit_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
+          "hide": false,
+          "interval": "15s",
+          "legendFormat": "<- {{node}}",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(container_network_receive_bytes_total{node=~\"^$Node$\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "15s",
+          "legendFormat": "-> Cluster",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "- sum(rate(container_network_transmit_bytes_total{node=~\"^$Node$\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "15s",
+          "legendFormat": "<- Cluster",
+          "refId": "D"
+        }
+      ],
+      "title": "Network I/O usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 15
+      },
+      "id": 2102,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(container_fs_writes_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
+          "interval": "15s",
+          "legendFormat": "-> {{node}}",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "- sum(rate(container_fs_reads_bytes_total{node=~\"^$Node$\"}[$__rate_interval])) by (node)",
+          "hide": false,
+          "interval": "15s",
+          "legendFormat": "<- {{node}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Filesystem I/O usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 15
+      },
+      "id": 2101,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(container_fs_usage_bytes{node=~\"^$Node$\"}) by (node)",
+          "interval": "15s",
+          "legendFormat": " {{node}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Filesystem Capacity usage",
+      "type": "timeseries"
     },
     {
       "collapsed": true,
@@ -1388,7 +1387,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 23
       },
       "id": 2022,
       "panels": [
@@ -2623,7 +2622,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 2
+        "y": 24
       },
       "id": 2073,
       "panels": [
@@ -2783,7 +2782,7 @@
               "instant": true,
               "interval": "10s",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}/{{ deployment }}",
+              "legendFormat": "{{exported_namespace}}/{{ deployment }}",
               "refId": "A"
             }
           ],
@@ -2951,7 +2950,7 @@
               "instant": true,
               "interval": "10s",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}/{{ daemonset}}",
+              "legendFormat": "{{exported_namespace}}/{{ daemonset}}",
               "refId": "A"
             }
           ],
@@ -3125,12 +3124,12 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "bottomk(5,sum(kube_job_status_succeeded / kube_job_spec_completions) by (job_name,namespace))",
+              "expr": "bottomk(5,sum(kube_job_status_succeeded / kube_job_spec_completions) by (job_name,exported_namespace))",
               "format": "time_series",
               "instant": true,
               "interval": "10s",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}/{{ job_name}}",
+              "legendFormat": "{{exported_namespace}}/{{ job_name}}",
               "refId": "A"
             }
           ],
@@ -3665,7 +3664,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 25
       },
       "id": 2084,
       "panels": [
@@ -3727,7 +3726,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 26
+            "y": 4
           },
           "id": 2088,
           "options": {
@@ -3813,7 +3812,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 10
           },
           "id": 2089,
           "options": {
@@ -3899,7 +3898,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 38
+            "y": 16
           },
           "id": 2091,
           "options": {
@@ -3993,7 +3992,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 44
+            "y": 22
           },
           "id": 2092,
           "options": {
@@ -4040,7 +4039,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 26
       },
       "id": 2094,
       "panels": [
@@ -4102,7 +4101,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 27
+            "y": 5
           },
           "id": 2096,
           "options": {
@@ -4189,7 +4188,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 33
+            "y": 11
           },
           "id": 2098,
           "options": {
@@ -4275,7 +4274,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 17
           },
           "id": 2100,
           "options": {
@@ -4355,5 +4354,5 @@
   "timezone": "",
   "title": "Kubernetes Monitor",
   "uid": "Wy04g9h7k",
-  "version": 33
+  "version": 34
 }
