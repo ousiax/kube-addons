@@ -10,10 +10,10 @@ resources:
   - ./overlays/node-exporter
 images:
   - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
-    newTag: v2.2.3
+    newTag: v2.3.0
   - name: prom/prometheus
-    newTag: v2.31.1
+    newTag: v2.32.1
   - name: prom/node-exporter
-    newTag: v1.2.2
+    newTag: v1.3.1
   - name: grafana/grafana-oss
-    newTag: 8.2.3
+    newTag: 8.3.3
