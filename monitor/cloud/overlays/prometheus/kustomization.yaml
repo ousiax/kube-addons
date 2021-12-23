@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitor
+resources:
+  - ../../../manifests/prometheus
+  - manifests/ingress.yaml
+patchesStrategicMerge:
+  - manifests/deployment-args.yaml
+  - manifests/deployment-resources.yaml
+  - manifests/deployment-volumes.yaml
+configMapGenerator:
+  - name: prometheus-configuration
+    behavior: merge
+    files:
+      - manifests/prometheus.yaml
+generatorOptions:
+  disableNameSuffixHash: true

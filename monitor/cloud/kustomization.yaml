@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitor
+resources:
+  - ../manifests/namespace
+  - ./overlays/prometheus
+  - ./overlays/grafana
+  - ./overlays/kube-state-metrics
+  - ./overlays/node-exporter
+images:
+  - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
+    newTag: v2.2.3
+  - name: prom/prometheus
+    newTag: v2.31.1
+  - name: prom/node-exporter
+    newTag: v1.2.2
+  - name: grafana/grafana-oss
+    newTag: 8.2.3
