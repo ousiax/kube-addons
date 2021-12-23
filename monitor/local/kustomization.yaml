@@ -3,11 +3,11 @@ kind: Kustomization
 namespace: monitor
 resources:
   - ../manifests/namespace
+  - ../manifests/local-storage
   - ./overlays/prometheus
   - ./overlays/grafana
   - ./overlays/kube-state-metrics
   - ./overlays/node-exporter
-  - ./overlays/persistent-volumes
 images:
   - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
     newTag: v2.2.3
