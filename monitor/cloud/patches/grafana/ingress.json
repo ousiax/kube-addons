@@ -2,6 +2,6 @@
   { 
     "op": "replace", 
     "path": "/spec/rules/0/host", 
-    "value": "the.real.hostname"
+    "value": "grafana.local.io"
   }
 ]
