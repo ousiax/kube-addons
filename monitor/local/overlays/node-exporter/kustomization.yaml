@@ -4,4 +4,4 @@ namespace: monitor
 resources:
   - ../../../manifests/node-exporter
 patchesStrategicMerge:
-  - manifests/daemonset.yaml
+  - manifests/daemonset-resources.yaml

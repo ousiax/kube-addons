@@ -4,4 +4,4 @@ namespace: monitor
 resources:
   - ../../../manifests/kube-state-metrics
 patchesStrategicMerge:
-  - manifests/service.yaml
+  - manifests/service-prometheus-scrape.yaml

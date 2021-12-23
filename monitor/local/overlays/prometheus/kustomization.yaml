@@ -5,7 +5,9 @@ resources:
   - ../../../manifests/prometheus
   - manifests/ingress.yaml
 patchesStrategicMerge:
-  - manifests/deployment.yaml
+  - manifests/deployment-args.yaml
+  - manifests/deployment-resources.yaml
+  - manifests/deployment-volumes.yaml
 configMapGenerator:
   - name: prometheus-configuration
     behavior: merge

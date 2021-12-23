@@ -5,7 +5,8 @@ resources:
   - ../../../manifests/grafana
   - manifests/ingress.yaml
 patchesStrategicMerge:
-  - manifests/deployment.yaml
+  - manifests/deployment-env.yaml
+  - manifests/deployment-volumes.yaml
 configMapGenerator:
   - name: provisioning-datasources
     files:
