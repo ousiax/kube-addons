@@ -3,16 +3,8 @@
 1. Create `cloud.yaml` file
 
 ```console
-$ cd ./manifests
-
-$ ./cloud.sh
-
-$ ls cloud.yaml 
-cloud.yaml
+$ kubectl kustomize ../scratch/cloud/ > manifests/cloud.yaml
 ```
-
-Then back to the parent work directory.
-
 2. Look out the `patches` directory, you should custom the `prometheus` and `grafana` ingress host.
 
 3. You may also need to custom the container image at `kustomization.yaml`
