@@ -12,6 +12,6 @@ configMapGenerator:
   - name: prometheus-configuration
     behavior: merge
     files:
-      - manifests/prometheus.yaml
+      - manifests/config/prometheus.yaml
 generatorOptions:
   disableNameSuffixHash: true
