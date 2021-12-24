@@ -5,6 +5,10 @@ resources:
 patchesStrategicMerge:
   - manifests/patches/prometheus/deployment-args.yaml
   - manifests/patches/prometheus/deployment-resources.yaml
+  - manifests/patches/prometheus/deployment-image-pull-secrets.yaml
+  - manifests/patches/grafana/deployment-image-pull-secrets.yaml
+  - manifests/patches/kube-state-metrics/deployment-image-pull-secrets.yaml
+  - manifests/patches/node-exporter/daemonset-image-pull-secrets.yaml
 configMapGenerator:
   - name: prometheus-configuration
     namespace: monitor

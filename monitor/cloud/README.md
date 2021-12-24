@@ -5,9 +5,9 @@
 ```console
 $ kubectl kustomize ../scratch/cloud/ > manifests/cloud.yaml
 ```
-2. Look out the `patches` directory, you should custom the `prometheus` and `grafana` ingress host.
+2. Look out the `manifests/patches` directory, you should custom the `ingress.spec.rules[].host` and `pod.spec.imagePullSecrets`.
 
-3. You may also need to custom the container image at `kustomization.yaml`
+3. You may also need to custom the images at `kustomization.yaml`
 
 ```yaml
 images:
