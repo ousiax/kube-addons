@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      volumes:
+        - name: data
+          emptyDir:
+      containers:
+        - name: mysql
+          image: mysql:8
+          env:
+            - name: "MYSQL_RANDOM_ROOT_PASSWORD"
+              value: "yes"
+                #- name: "MYSQL_ROOT_PASSWORD"
+                #  value: "uvei8Seekoo3Oox2fahnaisa3tei2tif"
+          ports:
+            - containerPort: 3306
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql

@@ -1,0 +1,4 @@
+dashboards:
+  - name: MySQL Exporter Quickstart and Dashboard
+    id: 14057
+    url: https://grafana.com/grafana/dashboards/14057

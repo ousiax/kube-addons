@@ -1,0 +1,16 @@
+namespace: monitor
+namePrefix: rds-ebs-mysql-80-
+commonLabels:
+  db_instance_name: rds-ebs-mysql-80
+  db_instance_id: 8a06a82d7928459993810d30d8a4304ein01
+  db_instance_ip: 10.24.130.46
+  instance: 10.24.130.46
+resources:
+  - ../../../../manifests/mysqld-exporter/
+secretGenerator:
+  - name: mysqld-exporter-my-cnf
+    behavior: merge
+    files:
+      - manifests/config/my.cnf
+generatorOptions:
+  disableNameSuffixHash: true
