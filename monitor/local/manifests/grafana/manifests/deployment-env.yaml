@@ -9,7 +9,7 @@ spec:
         - name: grafana
           env:
             - name: GF_SERVER_DOMAIN
-              value: grafana.local.io
+              value: graf.local.io
                 #- name: GF_SERVER_ROOT_URL
                 #  value: root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana/
                 #- name: GF_SERVER_SERVE_FROM_SUB_PATH
