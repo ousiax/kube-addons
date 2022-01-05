@@ -5,8 +5,8 @@ commonLabels:
   db_instance_id: 8a06a82d7928459993810d30d8a4304ein01
   db_instance_ip: 10.24.130.46
   instance: 10.24.130.46
-resources:
-  - ../../../../manifests/mysqld-exporter/
+bases:
+  - ../templ/
 secretGenerator:
   - name: mysqld-exporter-my-cnf
     behavior: merge
