@@ -1,0 +1,7 @@
+commonLabels:
+  app.kubernetes.io/name: kibana
+  app.kubernetes.io/part-of: logging
+namespace: logging
+resources:
+  - manifests/deployment.yaml
+  - manifests/service.yaml
