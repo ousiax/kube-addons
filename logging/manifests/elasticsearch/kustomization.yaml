@@ -1,0 +1,7 @@
+commonLabels:
+  app.kubernetes.io/name: elasticsearch
+  app.kubernetes.io/part-of: logging
+namespace: logging
+resources:
+  - manifests/statefulset.yaml
+  - manifests/service.yaml
