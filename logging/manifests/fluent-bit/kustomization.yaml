@@ -1,0 +1,21 @@
+commonLabels:
+  app.kubernetes.io/name: fluent-bit
+  app.kubernetes.io/part-of: logging
+namespace: logging
+resources:
+  - manifests/daemonset.yaml
+  - manifests/service-account.yaml
+  - manifests/clusterrole.yaml
+  - manifests/clusterrolebinding.yaml
+configMapGenerator:
+  - name: fluent-bit-conf
+    files:
+      - manifests/fluent-bit.conf
+      - manifests/conf.d/parsers.conf
+      - manifests/conf.d/inputs-kubernetes.conf
+      - manifests/conf.d/inputs-systemd.conf
+      - manifests/conf.d/filters-kubernetes.conf
+      - manifests/conf.d/outputs-es.conf
+      - manifests/conf.d/outputs-stdout.conf
+generatorOptions:
+  disableNameSuffixHash: true 
