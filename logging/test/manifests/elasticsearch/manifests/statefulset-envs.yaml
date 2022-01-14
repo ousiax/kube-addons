@@ -6,12 +6,8 @@ metadata:
 spec:
   template:
     spec:
-      volumes:
-        - name: elasticsearchdata
-          emptyDir:
-            sizeLimit: 500Mi
       containers:
         - name: elasticsearch
           env:
-            - name: "discovery.type"
-              value: "single-node"
+            - name: discovery.type
+              value: single-node

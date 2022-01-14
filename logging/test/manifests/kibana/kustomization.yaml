@@ -1,0 +1,7 @@
+namespace: logging
+resources:
+  - ../../../manifests/kibana
+  - manifests/ingress.yaml
+patchesStrategicMerge:
+  - manifests/deployment-envs.yaml
+  - manifests/deployment-resources.yaml

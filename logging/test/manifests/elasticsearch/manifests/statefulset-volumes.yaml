@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+  namespace: logging
+spec:
+  template:
+    spec:
+      volumes:
+        - name: elasticsearchdata
+          emptyDir:
+            sizeLimit: 500Mi
+      containers:
+        - name: elasticsearch
+          volumeMounts:
+            - name: elasticsearchdata
+              mountPath: /usr/share/elasticsearch/data
