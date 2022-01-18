@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+spec:
+  template:
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            # need more cpu upon initialization, therefore burstable class
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi

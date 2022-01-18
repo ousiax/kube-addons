@@ -1,15 +1,15 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kibana
   labels:
-    app: kibana
+    app.kubernetes.io/name: kibana
+    app.kubernetes.io/part-of: logging
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: kibana.local.io
+    - host: kiba.local.io
       http:
         paths:
           - path: /
