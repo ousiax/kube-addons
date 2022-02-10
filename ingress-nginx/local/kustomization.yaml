@@ -1,10 +1,9 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+namespace: zhangsan
 resources:
-  - ../base
+  - ../manifests
 patchesStrategicMerge:
-  - controller-service.yaml
-  - controller-deployment.yaml
+  - manifests/controller-service.yaml
+  - manifests/controller-deployment.yaml
 configMapGenerator:
   - name: ingress-nginx-controller
     namespace: ingress-nginx
