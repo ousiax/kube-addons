@@ -23,9 +23,9 @@ spec:
             - --config=/etc/fluent-bit/fluent-bit.conf
             - --quiet
           env:
-            - name: FLB_ES_HOST
+            - name: ES_HOST
               value: "elasticsearch.logging"
-            - name: FLB_ES_PORT
+            - name: ES_PORT
               value: "9200"
           ports:
             - containerPort: 2020
