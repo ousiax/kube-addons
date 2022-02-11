@@ -1,4 +1,4 @@
-namespace: zhangsan
+namespace: ingress-nginx
 resources:
   - ../manifests
 patchesStrategicMerge:
