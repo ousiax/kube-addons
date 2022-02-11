@@ -1,0 +1,15 @@
+commonLabels:
+  app.kubernetes.io/name: curator
+  app.kubernetes.io/part-of: logging
+namespace: logging
+resources:
+  - manifests/cronjob.yaml
+configMapGenerator:
+  - name: curator-config
+    files:
+      - manifests/conf/curator.yaml
+  - name: curator-actionfile
+    files:
+      - manifests/conf/action.yaml
+generatorOptions:
+  disableNameSuffixHash: true 

@@ -1,0 +1,62 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: curator
+  namespace: logging
+  labels:
+    app.kubernetes.io/name: curator
+spec:
+  # At 23:30.
+  schedule: "30 23 * * *"
+  jobTemplate:
+    metadata:
+      name: es-curator
+      labels:
+        app.kubernetes.io/name: curator
+    spec:
+      template:
+        metadata:
+          name: es-curator
+          labels:
+            app.kubernetes.io/name: curator
+        spec:
+          securityContext:
+            runAsUser: 65534
+          restartPolicy: OnFailure
+          containers:
+            - image: bobrik/curator:5.8.1
+              name: curator
+              env:
+                - name: ES_HOST
+                  value: elasticsearch.logging
+                - name: ES_PORT
+                  value: "9200"
+                - name: LOG_LEVEL
+                  value: INFO
+                - name: LOG_FORMAT
+                  value: json
+              args:
+                #- --dry-run
+                - --config=/etc/curator/config/curator.yaml
+                - /etc/curator/actions/action.yaml
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 50Mi
+                limits:
+                  cpu: 50m
+                  memory: 50Mi
+              volumeMounts:
+                - name: config
+                  mountPath: /etc/curator/config
+                  readOnly: true
+                - name: actionfile
+                  mountPath: /etc/curator/actions
+                  readOnly: true
+          volumes:
+            - name: config
+              configMap:
+                name: curator-config
+            - name: actionfile
+              configMap:
+                name: curator-actionfile
