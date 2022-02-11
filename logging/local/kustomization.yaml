@@ -2,5 +2,6 @@ namespace: logging
 resources:
   - ../manifests/fluent-bit
   - ../manifests/local-storage
+  - ../manifests/curator
   - manifests/kibana
   - manifests/elasticsearch
