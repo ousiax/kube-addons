@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kustomize build . | kubectl diff -f -
+kubectl diff -k .

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kustomize build . | kubectl apply -f -
+kubectl apply -k .
