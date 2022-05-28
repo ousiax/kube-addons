@@ -55,3 +55,8 @@ configMapGenerator:
       - proxy-add-original-uri-header=false
 generatorOptions:
   disableNameSuffixHash: true
+images:
+  - name: k8s.gcr.io/ingress-nginx/controller
+    newName: registry.aliyuncs.com/google_containers/nginx-ingress-controller
+  - name: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
+    newName: registry.aliyuncs.com/google_containers
