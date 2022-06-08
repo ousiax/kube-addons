@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kustomize build . | kubectl apply -f - --dry-run=client
+kubectl apply -k . --dry-run=client
