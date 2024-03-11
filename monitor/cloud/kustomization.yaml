@@ -30,15 +30,15 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 images:
-  - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
-    newName: k8s.gcr.io/kube-state-metrics/kube-state-metrics
-    newTag: v2.3.0
+  - name: registry.k8s.io/kube-state-metrics/kube-state-metrics
+    newName: registry.k8s.io/kube-state-metrics/kube-state-metrics
+    newTag: v2.10.0
   - name: prom/prometheus
     newName: prom/prometheus
-    newTag: v2.32.1
+    newTag: v2.50.1
   - name: prom/node-exporter
     newName: prom/node-exporter
-    newTag: v1.3.1
+    newTag: v1.7.0
   - name: grafana/grafana-oss
     newName: grafana/grafana-oss
-    newTag: 8.3.3
+    newTag: 10.2.4

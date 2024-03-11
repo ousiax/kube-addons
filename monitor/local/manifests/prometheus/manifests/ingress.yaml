@@ -5,11 +5,10 @@ metadata:
   name: prometheus
   labels:
     app: prometheus
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
+  ingressClassName: nginx
   rules:
-    - host: prom.local.io
+    - host: prom.dev.test
       http:
         paths:
           - path: /

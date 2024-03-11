@@ -9,11 +9,12 @@ resources:
   - manifests/kube-state-metrics
   - manifests/node-exporter
 images:
-  - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
-    newTag: v2.3.0
+  - name: registry.k8s.io/kube-state-metrics/kube-state-metrics
+    newName: bitnami/kube-state-metrics
+    newTag: 2.10.1
   - name: prom/prometheus
-    newTag: v2.32.1
+    newTag: v2.50.1
   - name: prom/node-exporter
-    newTag: v1.3.1
+    newTag: v1.7.0
   - name: grafana/grafana-oss
-    newTag: 8.3.3
+    newTag: 10.2.4

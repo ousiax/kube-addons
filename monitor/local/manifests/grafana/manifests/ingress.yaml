@@ -5,11 +5,10 @@ metadata:
   name: grafana
   labels:
     app: grafana
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
+  ingressClassName: nginx
   rules:
-    - host: graf.local.io
+    - host: graf.dev.test
       http:
         paths:
           - path: /
