@@ -6,12 +6,12 @@ resources:
   - manifests/ingress.yaml
 patches:
   - path: manifests/deployment.yaml
-secretGenerator:
-  - name: local.io
-    files:
-      - tls.crt=manifests/tls/local.io.crt
-      - tls.key=manifests/tls/local.io.key
-    type: "kubernetes.io/tls"
+#secretGenerator:
+#  - name: local.io
+#    files:
+#      - tls.crt=manifests/tls/local.io.crt
+#      - tls.key=manifests/tls/local.io.key
+#    type: "kubernetes.io/tls"
 generatorOptions:
   disableNameSuffixHash: true
 images:
