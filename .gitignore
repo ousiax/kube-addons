@@ -1,1 +1,4 @@
 *.tgz
+*.crt
+*.key
+*.pem
