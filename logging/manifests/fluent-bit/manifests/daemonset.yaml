@@ -18,7 +18,7 @@ spec:
       containers:
         - name: fluent-bit
           image: fluent/fluent-bit:2.2
-          command:
+          args:
             - --config=/etc/fluent-bit/fluent-bit.conf
             - --quiet
           env:
