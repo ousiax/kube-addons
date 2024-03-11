@@ -13,12 +13,12 @@ spec:
             - name: prometheus
               containerPort: 10254
               protocol: TCP
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - topologyKey: kubernetes.io/hostname
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/component: controller
-                  app.kubernetes.io/instance: ingress-nginx
-                  app.kubernetes.io/name: ingress-nginx
+#      affinity:
+#        podAntiAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            - topologyKey: kubernetes.io/hostname
+#              labelSelector:
+#                matchLabels:
+#                  app.kubernetes.io/component: controller
+#                  app.kubernetes.io/instance: ingress-nginx
+#                  app.kubernetes.io/name: ingress-nginx
