@@ -1,9 +1,9 @@
 namespace: ingress-nginx
 resources:
   - ../manifests
-patchesStrategicMerge:
-  - manifests/controller-service.yaml
-  - manifests/controller-deployment.yaml
+patches:
+  - path: manifests/controller-service.yaml
+  - path: manifests/controller-deployment.yaml
 configMapGenerator:
   - name: ingress-nginx-controller
     namespace: ingress-nginx
