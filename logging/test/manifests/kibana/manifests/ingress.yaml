@@ -5,11 +5,9 @@ metadata:
   labels:
     app.kubernetes.io/name: kibana
     app.kubernetes.io/part-of: logging
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: kiba.local.io
+    - host: kiba.dev.test
       http:
         paths:
           - path: /
