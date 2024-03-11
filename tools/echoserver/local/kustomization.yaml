@@ -4,8 +4,8 @@ namespace: default
 resources:
   - ../manifests
   - manifests/ingress.yaml
-patchesStrategicMerge:
-  - manifests/deployment.yaml
+patches:
+  - path: manifests/deployment.yaml
 secretGenerator:
   - name: local.io
     files:

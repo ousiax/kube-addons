@@ -25,7 +25,6 @@ metadata:
   labels:
     app: echoserver
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # redirect wwww.local.io to local.io
     # nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
@@ -33,6 +32,7 @@ metadata:
     # nginx.ingress.kubernetes.io/configuration-snippet: |
     #   rewrite ^(/mem/.*)$ http://ex.local.io$1 permanent;
 spec:
+  ingressClassName: "nginx"
   tls:
     - hosts:
       -  "*.local.io"
