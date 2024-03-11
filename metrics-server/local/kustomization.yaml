@@ -1,7 +1,7 @@
 resources:
   - ../manifests
-patchesStrategicMerge:
-  - metrics-server-deployment.yaml
+patches:
+  - path: metrics-server-deployment.yaml
 images:
   - name: registry.k8s.io/metrics-server/metrics-server
     newName: registry.aliyuncs.com/google_containers/metrics-server
