@@ -58,5 +58,9 @@ generatorOptions:
 images:
   - name: registry.k8s.io/ingress-nginx/controller
     newName: registry.aliyuncs.com/google_containers/nginx-ingress-controller
+    # remove the digest to ignore the integrity checking.
+    newTag: v1.9.6
   - name: registry.k8s.io/ingress-nginx/kube-webhook-certgen
     newName: registry.aliyuncs.com/google_containers/kube-webhook-certgen
+    # remove the digest to ignore the integrity checking.
+    newTag: v20231226-1a7112e06
