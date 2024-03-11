@@ -1,4 +1,0 @@
-namespace: monitor
-bases:
-  - mysql57-exporter
-  - mysql80-exporter

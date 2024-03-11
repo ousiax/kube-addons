@@ -1,0 +1,5 @@
+namespace: metrics
+resources:
+  - ../../../../manifests/kube-state-metrics
+patches:
+  - manifests/service-prometheus-scrape.yaml

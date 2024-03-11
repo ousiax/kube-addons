@@ -1,0 +1,10 @@
+namespace: metrics
+resources:
+  - manifests/deployment.yaml
+  - manifests/service.yaml
+secretGenerator:
+  - name: mysqld-exporter-my-cnf
+    files:
+      - manifests/config/my.cnf
+generatorOptions:
+  disableNameSuffixHash: true

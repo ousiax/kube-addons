@@ -1,0 +1,7 @@
+namespace: metrics
+resources:
+  - ../../manifests/namespace
+  - manifests/prometheus
+  - manifests/grafana
+  - manifests/kube-state-metrics
+  - manifests/node-exporter

@@ -1,7 +1,0 @@
-namespace: monitor
-resources:
-  - ../../manifests/namespace
-  - manifests/prometheus
-  - manifests/grafana
-  - manifests/kube-state-metrics
-  - manifests/node-exporter

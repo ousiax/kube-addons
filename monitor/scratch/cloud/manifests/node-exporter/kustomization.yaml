@@ -1,3 +1,0 @@
-namespace: monitor
-resources:
-  - ../../../../manifests/node-exporter

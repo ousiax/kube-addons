@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-exporter
+  labels:
+    app.kubernetes.io/name: node-exporter
+    app.kubernetes.io/part-of: metrics
+  annotations:
+    prometheus.io/port: "9100"
+    prometheus.io/scrape: "true"
+spec:
+  selector:
+    app.kubernetes.io/name: node-exporter
+    app.kubernetes.io/part-of: metrics
+  type: ClusterIP
+  ports:
+    - port: 9100
+      targetPort: 9100

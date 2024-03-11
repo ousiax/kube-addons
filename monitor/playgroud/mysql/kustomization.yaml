@@ -1,4 +1,0 @@
-namespace: monitor
-resources:
-  - manifests/service.yaml
-  - manifests/statefulset.yaml

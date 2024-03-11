@@ -1,0 +1,4 @@
+namespace: metrics
+resources:
+  - manifests/service.yaml
+  - manifests/statefulset.yaml
