@@ -2,7 +2,7 @@ namespace: monitor
 resources:
   - ../../../../manifests/grafana
   - manifests/ingress.yaml
-patchesStrategicMerge:
+patches:
   - manifests/deployment-env.yaml
   - manifests/deployment-volumes.yaml
 configMapGenerator:

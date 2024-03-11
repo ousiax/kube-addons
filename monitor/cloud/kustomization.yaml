@@ -2,22 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - manifests/cloud.yaml
-patchesStrategicMerge:
-  - manifests/patches/prometheus/deployment-args.yaml
-  - manifests/patches/prometheus/deployment-resources.yaml
-  - manifests/patches/prometheus/deployment-image-pull-secrets.yaml
-  - manifests/patches/grafana/deployment-image-pull-secrets.yaml
-  - manifests/patches/kube-state-metrics/deployment-image-pull-secrets.yaml
-  - manifests/patches/node-exporter/daemonset-image-pull-secrets.yaml
-configMapGenerator:
-  - name: prometheus-configuration
-    namespace: monitor
-    behavior: merge
-    files:
-      - manifests/patches/prometheus/config/prometheus.yaml
-generatorOptions:
-  disableNameSuffixHash: true
-patchesJson6902:
+patches:
+  - path: manifests/patches/prometheus/deployment-args.yaml
+  - path: manifests/patches/prometheus/deployment-resources.yaml
+  - path: manifests/patches/prometheus/deployment-image-pull-secrets.yaml
+  - path: manifests/patches/grafana/deployment-image-pull-secrets.yaml
+  - path: manifests/patches/kube-state-metrics/deployment-image-pull-secrets.yaml
+  - path: manifests/patches/node-exporter/daemonset-image-pull-secrets.yaml
   - path: manifests/patches/prometheus/ingress.json
     target:
       group: networking.k8s.io
@@ -30,6 +21,14 @@ patchesJson6902:
       version: v1
       kind: Ingress
       name: grafana
+configMapGenerator:
+  - name: prometheus-configuration
+    namespace: monitor
+    behavior: merge
+    files:
+      - manifests/patches/prometheus/config/prometheus.yaml
+generatorOptions:
+  disableNameSuffixHash: true
 images:
   - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
     newName: k8s.gcr.io/kube-state-metrics/kube-state-metrics

@@ -4,9 +4,9 @@ namespace: monitor
 resources:
   - ../../../manifests/grafana
   - manifests/ingress.yaml
-patchesStrategicMerge:
-  - manifests/deployment-env.yaml
-  - manifests/deployment-volumes.yaml
+patches:
+  - path: manifests/deployment-env.yaml
+  - path: manifests/deployment-volumes.yaml
 configMapGenerator:
   - name: provisioning-datasources
     files:

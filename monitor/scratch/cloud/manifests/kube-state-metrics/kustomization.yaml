@@ -1,5 +1,5 @@
 namespace: monitor
 resources:
   - ../../../../manifests/kube-state-metrics
-patchesStrategicMerge:
+patches:
   - manifests/service-prometheus-scrape.yaml

@@ -4,10 +4,10 @@ namespace: monitor
 resources:
   - ../../../manifests/prometheus
   - manifests/ingress.yaml
-patchesStrategicMerge:
-  - manifests/deployment-args.yaml
-  - manifests/deployment-resources.yaml
-  - manifests/deployment-volumes.yaml
+patches:
+  - path: manifests/deployment-args.yaml
+  - path: manifests/deployment-resources.yaml
+  - path: manifests/deployment-volumes.yaml
 configMapGenerator:
   - name: prometheus-configuration
     behavior: merge

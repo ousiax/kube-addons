@@ -2,7 +2,7 @@ namespace: monitor
 resources:
   - ../../../../manifests/prometheus
   - manifests/ingress.yaml
-patchesStrategicMerge:
+patches:
   - manifests/deployment-args.yaml
   - manifests/deployment-resources.yaml
   - manifests/deployment-volumes.yaml
