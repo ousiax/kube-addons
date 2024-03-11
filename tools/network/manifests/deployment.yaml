@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: net-utils
-  name: net-utils
+    app: net-tools
+  name: net-tools
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: net-utils
+      app: net-tools
   template:
     metadata:
       labels:
-        app: net-utils
+        app: net-tools
     spec:
       containers:
         - image: qqbuby/net-tools
-          name: net-utils
-          command: ["sleep", "3650d"]
+          name: net-tools
+          command: ["tail", "-f", "/dev/null"]
