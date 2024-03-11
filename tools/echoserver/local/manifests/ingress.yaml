@@ -21,7 +21,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: local.io
+  name: dev.localhost
   labels:
     app: echoserver
   annotations:
@@ -35,10 +35,10 @@ spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
-      -  "*.local.io"
-      secretName: "local.io"
+      -  "*.dev.localhost"
+      secretName: "dev.localhost"
   rules:
-    - host: local.io
+    - host: dev.localhost
       http:
         paths:
           - path: /
