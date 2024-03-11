@@ -1,7 +1,7 @@
 namespace: logging
 resources:
   - ../../../manifests/elasticsearch/
-patchesStrategicMerge:
-  - manifests/statefulset-envs.yaml
-  - manifests/statefulset-volumes.yaml
-  - manifests/statefulset-resources.yaml
+patches:
+  - path: manifests/statefulset-envs.yaml
+  - path: manifests/statefulset-volumes.yaml
+  - path: manifests/statefulset-resources.yaml
