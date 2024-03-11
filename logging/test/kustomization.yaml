@@ -1,5 +1,6 @@
 namespace: logging
 resources:
   - ../manifests/fluent-bit
+  - manifests/namespace.yaml
   - manifests/kibana
   - manifests/elasticsearch

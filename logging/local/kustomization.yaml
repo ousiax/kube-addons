@@ -3,5 +3,6 @@ resources:
   - ../manifests/fluent-bit
   - ../manifests/local-storage
   - ../manifests/curator
+  - manifests/namespace.yaml
   - manifests/kibana
   - manifests/elasticsearch
