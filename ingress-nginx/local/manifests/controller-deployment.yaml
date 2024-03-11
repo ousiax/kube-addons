@@ -6,6 +6,9 @@ metadata:
 spec:
   replicas: 2
   template:
+    metadata:
+      annotations:
+        fluentbit.io/parser_stdout: ingressnginx
     spec:
       containers:
         - name: controller
