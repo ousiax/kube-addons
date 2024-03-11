@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: kibana
     app.kubernetes.io/part-of: logging
 spec:
+  ingressClassName: nginx
   rules:
     - host: kiba.dev.test
       http:
