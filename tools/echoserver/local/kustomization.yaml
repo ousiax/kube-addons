@@ -15,6 +15,6 @@ secretGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 images:
-  - name: k8s.gcr.io/echoserver
+  - name: registry.k8s.io/echoserver
     newName: registry.aliyuncs.com/google_containers/echoserver
     newTag: "1.10"

@@ -16,7 +16,7 @@ spec:
         app: echoserver
     spec:
       containers:
-        - image: k8s.gcr.io/echoserver
+        - image: registry.k8s.io/echoserver:1.10
           name: echoserver
           ports:
             - name: echo
