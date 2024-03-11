@@ -1,2 +1,2 @@
 resources:
-  - kube-snapshot-cron-job.yaml
+  - cron-job.yaml

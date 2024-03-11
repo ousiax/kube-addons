@@ -5,7 +5,7 @@ metadata:
   name: kube-snapshot
   namespace: kube-system
 spec:
-  schedule: "15 11 * * *"
+  schedule: "14 02 * * *"
   jobTemplate:
     spec:
       template:
@@ -25,7 +25,7 @@ spec:
           containers:
             - name: etcd
               # Same image as in /etc/kubernetes/manifests/etcd.yaml
-              image: k8s.gcr.io/etcd
+              image: registry.k8s.io/etcd:3.5.10-0
               env:
                 - name: POD_UID
                   valueFrom:
@@ -68,7 +68,7 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                   - matchExpressions:
-                    - key: node-role.kubernetes.io/master
+                    - key: node-role.kubernetes.io/control-plane
                       operator: Exists
           tolerations:
             - effect: NoSchedule
