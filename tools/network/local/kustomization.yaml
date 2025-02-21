@@ -5,4 +5,4 @@ resources:
   - ../manifests
 images:
   - name: qqbuby/net-tools
-    newTag: "2.0"
+    newTag: "2.3"
