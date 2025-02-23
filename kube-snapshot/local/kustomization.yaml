@@ -3,6 +3,6 @@ resources:
 images:
   # Same image as in /etc/kubernetes/manifests/etcd.yaml
   - name: registry.k8s.io/etcd
-    newTag: "3.5.10-0"
+    newTag: "3.5.15-0"
   - name: busybox
     newTag: "stable"
